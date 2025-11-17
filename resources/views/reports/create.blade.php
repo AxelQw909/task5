@@ -6,14 +6,16 @@
     <title>Создание заявки</title>
 </head>
 <body>
-    <h1>Создание</h1>
-    <form action="{{route('reports.store')}}" method="POST">
-        @csrf
-        <input type="text" name="number" placeholder="Номер машины">
-        <textarea name="description" placeholder="Описание"></textarea>
-        <br>
-        <input type="submit" value="Создать">
+    <x-app-layout>
+        <h1>Создание</h1>
+        <form action="{{route('reports.store')}}" method="POST">
+            @csrf
+            <input type="text" name="number" placeholder="Номер машины">
+            <textarea name="description" placeholder="Описание"></textarea>
+            <br>
+            <input type="submit" value="Создать">
 
-    </form>
+        </form>
+    </x-app-layout>
 </body>
 </html>

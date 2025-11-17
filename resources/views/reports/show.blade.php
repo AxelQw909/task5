@@ -6,8 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Обновление</h1>
-    <h1> {{$report->number}}</h1>
-    <p>{{$report-   >description}}</p>
+    <x-app-layout>
+        <h1>Обновление</h1>
+        <h1> {{$report->number}}</h1>
+        <p>{{$report-   >description}}</p>
+    </x-app-layout>    
 </body>
 </html>
