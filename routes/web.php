@@ -38,6 +38,12 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/reports/{report}',[ReportController::class, 'destroy'])->name('reports.destroy');
 });
+Route::middleware((Admin::class))->group(function(){
+        Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+        Route::patch('/reports/status/{report/', [ReportController::class,'statusUpdate'])
+        ->name('reports.status.update');
+});
+
 
 
 
