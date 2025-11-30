@@ -23,8 +23,9 @@ class User extends Authenticatable
         'middlename',
         'email',
         'login',
-        'tel',
+        'phone',
         'password',
+        'is_admin',
     ];
 
     /**
@@ -47,11 +48,30 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
         ];
     }
     
-    const ADMIN_ROLE = 'admin';
+    /**
+     * Check if user is admin
+     */
     public function isAdmin(){
-        return $this->role === self::ADMIN_ROLE;
+        return $this->is_admin === true;
+    }
+
+    /**
+     * Get the reports for the user.
+     */
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
+
+    /**
+     * Get user's full name
+     */
+    public function getFullNameAttribute()
+    {
+        return trim("{$this->lastname} {$this->name} {$this->middlename}");
     }
 }
