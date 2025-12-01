@@ -11,7 +11,6 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        // Загружаем заявления с отношениями пользователя и статуса
         $reports = Report::with(['user', 'status'])
             ->latest()
             ->get();
