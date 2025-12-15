@@ -1,7 +1,6 @@
 <nav class="bg-white border-b">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <!-- Лого и основное меню -->
             <div class="flex items-center space-x-8">
                 <a href="{{ route(auth()->user()->is_admin ? 'admin.index' : 'dashboard') }}" class="text-lg font-bold">
                     НарушенийНет
@@ -27,22 +26,18 @@
                 @endif
             </div>
 
-            <!-- Профиль -->
+            
             <div class="flex items-center">
                 <div class="relative" x-data="{ open: false }">
                     <button @click="open = !open" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100">
-                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                            <span class="text-blue-600 text-sm font-medium">
-                                {{ Auth::user()->name}}{{ Auth::user()->lastname }}
-                            </span>
-                        </div>
+                        
                         <span class="font-medium">{{ Auth::user()->name }}</span>
                         @if(auth()->user()->is_admin)
                             <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Админ</span>
                         @endif
                     </button>
 
-                    <!-- Выпадающее меню -->
+                    
                     <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg z-10">
                         <a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-100">
                             Профиль

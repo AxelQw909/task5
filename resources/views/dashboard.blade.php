@@ -1,6 +1,5 @@
 <x-app-layout>
     <div class="space-y-6">
-        <!-- Заголовок -->
         <div>
             <h1 class="text-2xl font-bold text-gray-900">
                 @if(auth()->user()->is_admin)
@@ -18,9 +17,7 @@
             </p>
         </div>
 
-        <!-- Для администратора -->
         @if(auth()->user()->is_admin)
-            <!-- Статистика -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div class="bg-white p-4 rounded-lg border">
                     <p class="text-sm text-gray-600">Всего заявлений</p>
@@ -40,7 +37,6 @@
                 </div>
             </div>
 
-            <!-- Действия -->
             <div class="bg-white p-6 rounded-lg border">
                 <h2 class="text-lg font-semibold mb-4">Быстрые действия</h2>
                 <div class="flex flex-wrap gap-3">
@@ -53,7 +49,6 @@
                 </div>
             </div>
         @else
-            <!-- Для обычного пользователя -->
             <div class="bg-white p-6 rounded-lg border">
                 <h2 class="text-lg font-semibold mb-4">Мои заявления</h2>
                 <div class="mb-6">
@@ -71,7 +66,6 @@
             </div>
         @endif
 
-        <!-- Последние заявления -->
         <div class="bg-white rounded-lg border overflow-hidden">
             <div class="p-6 border-b">
                 <h2 class="text-lg font-semibold">

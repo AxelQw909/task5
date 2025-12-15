@@ -12,13 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            // Переименовываем tel в phone
             $table->renameColumn('tel', 'phone');
-            
-            // Добавляем поле is_admin
             $table->boolean('is_admin')->default(false);
-            
-            // Делаем login обязательным и уникальным
             $table->string('login')->nullable(false)->change();
             $table->unique('login');
         });

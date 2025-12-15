@@ -12,7 +12,7 @@ class DashboardController extends Controller
     public function index()
     {
         if (Auth::user()->is_admin) {
-            // Данные для администратора
+
             return view('dashboard', [
                 'totalReports' => Report::count(),
                 'pendingReports' => Report::where('status_id', 1)->count(),
@@ -24,7 +24,7 @@ class DashboardController extends Controller
                     ->get()
             ]);
         } else {
-            // Данные для обычного пользователя
+
             return view('dashboard', [
                 'userReportsCount' => Report::where('user_id', Auth::id())->count(),
                 'userPendingReports' => Report::where('user_id', Auth::id())->where('status_id', 1)->count(),

@@ -22,42 +22,10 @@
             </a>
         </div>
 
-        <!-- фильтры -->
-        <div class="bg-white p-4 rounded-lg border">
-            <div class="flex flex-wrap gap-4">
-                <div>
-                    <p class="text-sm font-medium mb-2">Сортировка:</p>
-                    <div class="flex space-x-2">
-                        <a href="{{ route('reports.index', ['sort' => 'desc', 'status' => $status]) }}" 
-                           class="px-3 py-1 text-sm border rounded {{ $sort === 'desc' ? 'bg-blue-600 text-white' : 'hover:bg-gray-50' }}">
-                            Сначала новые
-                        </a>
-                        <a href="{{ route('reports.index', ['sort' => 'asc', 'status' => $status]) }}" 
-                           class="px-3 py-1 text-sm border rounded {{ $sort === 'asc' ? 'bg-blue-600 text-white' : 'hover:bg-gray-50' }}">
-                            Сначала старые
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <p class="text-sm font-medium mb-2">Статус:</p>
-                    <div class="flex flex-wrap gap-2">
-                        <a href="{{ route('reports.index', ['sort' => $sort]) }}" 
-                           class="px-3 py-1 text-sm border rounded {{ !$status ? 'bg-blue-600 text-white' : 'hover:bg-gray-50' }}">
-                            Все
-                        </a>
-                        @foreach($statuses as $statusItem)
-                            <a href="{{ route('reports.index', ['status' => $statusItem->id, 'sort' => $sort]) }}" 
-                               class="px-3 py-1 text-sm border rounded {{ $status == $statusItem->id ? 'bg-blue-600 text-white' : 'hover:bg-gray-50' }}">
-                                {{ $statusItem->name }}
-                            </a>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
+ 
+        <x-filter :sort="$sort" :status="$status" />
 
-        <!-- список -->
+
         <div class="bg-white rounded-lg border divide-y">
             @if($reports->count() > 0)
                 @foreach($reports as $report)
@@ -68,13 +36,7 @@
                                 <a href="{{ route('reports.show', $report->id) }}" class="font-medium hover:text-blue-600">
                                     {{ $report->number }}
                                 </a>
-                                @if($report->status->id === 1)
-                                    <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">На рассмотрении</span>
-                                @elseif($report->status->id === 2)
-                                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Решено</span>
-                                @else
-                                    <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Отклонено</span>
-                                @endif
+                                <x-status :status="$report->status->id" />
                             </div>
                             <p class="text-sm text-gray-600 mt-1 line-clamp-2">{{ $report->description }}</p>
                             <p class="text-xs text-gray-500 mt-2">
@@ -96,7 +58,7 @@
                 </div>
                 @endforeach
 
-                <!-- пагинация -->
+               
                 <div class="p-4">
                     {{ $reports->links() }}
                 </div>
