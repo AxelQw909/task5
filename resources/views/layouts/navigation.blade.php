@@ -32,9 +32,7 @@
                     <button @click="open = !open" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100">
                         
                         <span class="font-medium">{{ Auth::user()->name }}</span>
-                        @if(auth()->user()->is_admin)
-                            <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Админ</span>
-                        @endif
+                        
                     </button>
 
                     

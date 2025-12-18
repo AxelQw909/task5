@@ -5,27 +5,27 @@
             <p class="text-gray-600 mt-1">Управление заявлениями</p>
         </div>
 
-        <!-- статистика -->
+
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="bg-white p-4 rounded-lg border">
+            <div class="p-4 border">
                 <p class="text-sm text-gray-600">Всего</p>
                 <p class="text-2xl font-bold">{{ $reports->count() }}</p>
             </div>
-            <div class="bg-white p-4 rounded-lg border">
+            <div class="p-4 border">
                 <p class="text-sm text-gray-600">На рассмотрении</p>
                 <p class="text-2xl font-bold text-yellow-600">{{ $reports->where('status_id', 1)->count() }}</p>
             </div>
-            <div class="bg-white p-4 rounded-lg border">
+            <div class="p-4 border">
                 <p class="text-sm text-gray-600">Решено</p>
                 <p class="text-2xl font-bold text-green-600">{{ $reports->where('status_id', 2)->count() }}</p>
             </div>
-            <div class="bg-white p-4 rounded-lg border">
+            <div class="p-4 border">
                 <p class="text-sm text-gray-600">Отклонено</p>
                 <p class="text-2xl font-bold text-red-600">{{ $reports->where('status_id', 3)->count() }}</p>
             </div>
         </div>
 
-        <!-- таблица -->
+      
         <div class="bg-white rounded-lg border overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="min-w-full">
